@@ -27,6 +27,7 @@ class TasksViewModel extends _$TasksViewModel {
   void didOpenedTasksList() async {
     state = state.copyWith(tasksStatus: TasksStatus.loading);
     repository?.getTasksList().then((model) {
+      model.sort((a, b) => a.date.compareTo(b.date));
       state = state.copyWith(tasksStatus: TasksStatus.success, tasks: model);
     }, onError: (err) {
       state = state.copyWith(tasksStatus: TasksStatus.failure);
@@ -34,10 +35,7 @@ class TasksViewModel extends _$TasksViewModel {
   }
 
   //loading => UIでぐるぐる表示
-  //チェックがついていない（isFinishedがfalse) => checkを呼ぶ
-  //チェックがついている(isinishedがtrue) => uncheckを呼ぶ
-  //success =>
-  //failure => エラー表示
+
   void didCheckedBoxes(String uuid) async {
     final task = state.tasks.firstWhere((element) => element.uuid == uuid);
     final updatedTask = Task(
@@ -47,8 +45,6 @@ class TasksViewModel extends _$TasksViewModel {
         description: task.description,
         isFinished: !task.isFinished);
     repository?.updateTasksList(updatedTask).then((updatedList) {
-      print("viewmodel");
-      print(updatedList);
       state = state.copyWith(tasks: updatedList);
     });
   }

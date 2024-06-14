@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_app/view/home_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:todo_app/view/add_task_screen.dart';
+import 'package:todo_app/view/task_list_screen.dart';
+
+void main() async {
+  await initializeDateFormatting('ja_JP');
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProviderScope(child: HomeScreen()),
+      home: const ProviderScope(child: TaskListScreen()),
     );
   }
 }

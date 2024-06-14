@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/common/model/task.dart';
 import 'package:todo_app/view/task_tile.dart';
@@ -6,7 +5,7 @@ import 'package:todo_app/view/task_tile.dart';
 class DisplayListOfTask extends StatelessWidget {
   final List<Task> tasks;
   final void Function(String uuid) onChangedCheckBox;
-  final Function moveEditTaskPage;
+  final Function(int index) moveEditTaskPage;
 
 //コンストラクタでtaskの配列を受け取る
   const DisplayListOfTask(
@@ -19,16 +18,16 @@ class DisplayListOfTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 164, 148, 215),
+        color: Colors.black,
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListView.builder(
           itemCount: tasks.length,
           itemBuilder: ((context, index) {
             return GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () {
-                  //タップした時の処理(クロージャ)
-                  moveEditTaskPage();
+                  moveEditTaskPage(index);
                 },
                 child: TaskTail(
                   task: tasks[index],

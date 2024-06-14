@@ -10,18 +10,37 @@ class TaskTail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      title: Text(task.title),
-      subtitle: Text(task.date),
-      controlAffinity: ListTileControlAffinity.leading,
-      //チェックボックスの状態
-      value: task.isFinished,
-      //チェックボックスの状態が変更された際に呼び出されるコールバック関数
-      onChanged: (_) {
-        onChangedCheckBox();
-      },
-      activeColor: Colors.blue,
-      checkColor: Colors.white,
+    return Column(
+      children: [
+        Row(
+          children: [
+            Checkbox(
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => Color.fromARGB(255, 244, 101, 149)),
+                value: task.isFinished,
+                onChanged: (_) {
+                  onChangedCheckBox();
+                }),
+            const Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  task.title,
+                  style: const TextStyle(fontSize: 20, color: Colors.grey),
+                ),
+                Text(
+                  task.date,
+                  style: const TextStyle(fontSize: 15, color: Colors.grey),
+                )
+              ],
+            ),
+            const Spacer(),
+          ],
+        ),
+        const Divider(color: Colors.white)
+      ],
     );
   }
 }
