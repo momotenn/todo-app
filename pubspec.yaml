@@ -45,6 +45,8 @@ dependencies:
   riverpod_generator: ^2.4.0
   gap: ^3.0.1
   uuid: ^4.4.0
+  intl: ^0.18.1
+  flutter_datetime_picker_plus: ^2.2.0
 
 dev_dependencies:
   flutter_test:

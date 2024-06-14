@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tasks_view_model.dart';
+part of 'edit_task_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tasksViewModelHash() => r'e5af2287b21eeb1aca07d5e7396d8d6745fd332f';
+String _$editTaskViewModelHash() => r'8b9a06d0190bcc88450737b8174f08bd03903bd8';
 
-/// See also [TasksViewModel].
-@ProviderFor(TasksViewModel)
-final tasksViewModelProvider =
-    AutoDisposeNotifierProvider<TasksViewModel, TasksViewModelState>.internal(
-  TasksViewModel.new,
-  name: r'tasksViewModelProvider',
+/// See also [EditTaskViewModel].
+@ProviderFor(EditTaskViewModel)
+final editTaskViewModelProvider = AutoDisposeNotifierProvider<EditTaskViewModel,
+    EditTaskViewModelState>.internal(
+  EditTaskViewModel.new,
+  name: r'editTaskViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$tasksViewModelHash,
+      : _$editTaskViewModelHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TasksViewModel = AutoDisposeNotifier<TasksViewModelState>;
+typedef _$EditTaskViewModel = AutoDisposeNotifier<EditTaskViewModelState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
