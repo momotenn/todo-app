@@ -27,17 +27,17 @@ class TaskListScreen extends HookConsumerWidget {
     final unFinishedList = state.tasks.where((e) => !e.isFinished).toList();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 48, 47, 47),
+      backgroundColor: const Color.fromARGB(255, 53, 80, 126),
       appBar: AppBar(
         title: const Text(
           'タスク一覧',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 46, 119, 175),
       ),
       body: Padding(
         padding:
-            const EdgeInsets.only(top: 20, right: 10, bottom: 50, left: 10),
+            const EdgeInsets.only(top: 20, right: 10, bottom: 70, left: 10),
         child: Column(
           children: [
             const Gap(25),
@@ -45,7 +45,7 @@ class TaskListScreen extends HookConsumerWidget {
               '未完了',
               style: TextStyle(
                 fontSize: 25,
-                color: Color.fromARGB(255, 25, 122, 240),
+                color: Color.fromARGB(255, 244, 119, 111),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -67,7 +67,7 @@ class TaskListScreen extends HookConsumerWidget {
               '完了',
               style: TextStyle(
                 fontSize: 25,
-                color: Color.fromARGB(255, 223, 220, 43),
+                color: Color.fromARGB(255, 46, 119, 175),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -92,7 +92,8 @@ class TaskListScreen extends HookConsumerWidget {
             }),
           );
         },
-        child: const Icon(Icons.add, color: Color.fromARGB(255, 6, 181, 143)),
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add, color: Color.fromARGB(255, 46, 119, 175)),
       ),
     );
   }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/common/model/task.dart';
-import 'package:todo_app/view/task_list_screen.dart';
 
 import 'package:todo_app/view_model/edit_task_view_model.dart';
 
@@ -26,8 +24,14 @@ class EditTaskScreen extends HookConsumerWidget {
     final editTaskViewModel = ref.watch(editTaskViewModelProvider);
 
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 53, 80, 126),
         appBar: AppBar(
-          title: const Text('タスク編集'),
+          title: const Text(
+            'タスク編集',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color.fromARGB(255, 46, 119, 175),
+          iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             IconButton(
                 onPressed: () {
@@ -35,11 +39,11 @@ class EditTaskScreen extends HookConsumerWidget {
                       context: context,
                       builder: (BuildContext context1) {
                         return AlertDialog(
-                          title: Text('選択してください'),
-                          content: Text('このタスクを削除しますか？'),
+                          title: const Text('選択してください'),
+                          content: const Text('このタスクを削除しますか？'),
                           actions: [
                             TextButton(
-                              child: Text('はい'),
+                              child: const Text('はい'),
                               onPressed: () {
                                 ref
                                     .read(editTaskViewModelProvider.notifier)
@@ -50,7 +54,7 @@ class EditTaskScreen extends HookConsumerWidget {
                               },
                             ),
                             TextButton(
-                              child: Text('いいえ'),
+                              child: const Text('いいえ'),
                               onPressed: () {
                                 //'pop'で前のボタンまで戻る
                                 Navigator.of(context).pop();
@@ -60,12 +64,16 @@ class EditTaskScreen extends HookConsumerWidget {
                         );
                       });
                 },
-                icon: const Icon(Icons.delete))
+                icon: const Icon(Icons.delete)),
           ],
         ),
         body: Column(
           children: [
             TextField(
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
               onChanged: (value) {
                 ref.read(editTaskViewModelProvider.notifier).didInputTaskInfo(
                     titleTextEditingController.text,
@@ -75,11 +83,19 @@ class EditTaskScreen extends HookConsumerWidget {
               controller: titleTextEditingController,
               decoration: const InputDecoration(
                 hintText: "タスクタイトル",
-                prefixIcon: Icon(Icons.mode_edit),
+                hintStyle: TextStyle(color: Colors.grey),
+                prefixIcon: Icon(
+                  Icons.mode_edit,
+                  color: Colors.white,
+                ),
               ),
               textAlign: TextAlign.center,
             ),
             TextField(
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
               onChanged: (value) {
                 ref.read(editTaskViewModelProvider.notifier).didInputTaskInfo(
                     titleTextEditingController.text,
@@ -88,8 +104,8 @@ class EditTaskScreen extends HookConsumerWidget {
               },
               controller: dateTimeTextEditingController,
               textAlign: TextAlign.center,
-              decoration:
-                  const InputDecoration(prefixIcon: Icon(Icons.calendar_month)),
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.calendar_month, color: Colors.white)),
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());
                 DatePicker.showDateTimePicker(context,
@@ -111,6 +127,10 @@ class EditTaskScreen extends HookConsumerWidget {
               },
             ),
             TextField(
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
               onChanged: (value) {
                 ref.read(editTaskViewModelProvider.notifier).didInputTaskInfo(
                     titleTextEditingController.text,
@@ -122,7 +142,9 @@ class EditTaskScreen extends HookConsumerWidget {
               maxLines: null,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                  hintText: "詳しい内容", prefixIcon: Icon(Icons.edit_note)),
+                  hintText: "詳しい内容",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  prefixIcon: Icon(Icons.edit_note, color: Colors.white)),
             ),
             const Spacer(),
             Align(
@@ -131,6 +153,12 @@ class EditTaskScreen extends HookConsumerWidget {
                 width: 200,
                 height: 70,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 22),
+                    backgroundColor: Colors.white, // background
+                    foregroundColor:
+                        const Color.fromARGB(255, 46, 119, 175), // foreground
+                  ),
                   //ボタンを押した時の処理
                   onPressed: editTaskViewModel.isEditTaskButtonEnabled
                       ? () {

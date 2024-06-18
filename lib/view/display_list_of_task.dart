@@ -18,7 +18,16 @@ class DisplayListOfTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black,
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 47, 57, 68),
+            spreadRadius: 5,
+            blurRadius: 5,
+            offset: Offset(10, 10),
+          ),
+        ],
+        border: Border.all(color: const Color.fromARGB(255, 47, 57, 68)),
+        color: const Color.fromARGB(255, 46, 119, 175),
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListView.builder(
