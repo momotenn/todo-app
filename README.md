@@ -19,6 +19,41 @@ graph TD;
 ```
 - MVVMで実装
 
+# シーケンス図
+## タスク一覧ページ
+```mermaid
+sequenceDiagram;
+     view->>view model: リスト一覧が開いたことを伝達
+     view model->>repository: リスト一覧ページに載せるリスト一覧を取得するようrepositoryに依頼
+     repository->>SharedPreference: リスト一覧ページに載せるリスト一覧を取得
+     repository-->>view model:　リスト一覧を返す
+     view model-->>view: リスト一覧を表示
+     view->>view model:　チェックボックスが押されたことを伝達
+     view model->>repository: リスト一覧の中のチェックボックスのデータを更新するよう依頼
+     repository->>SharedPreference: リスト一覧の中のチェックボックスのデータを更新
+     repository-->>view model: 更新結果を返す
+　     view model-->>view: チェックをつけた場合は完了タスクへ、チェックを外した場合は未完了タスクへタスクを表示させる
+　　　　　　　　　　　view->>view: タスク追加ボタンが押されたら、タスク追加ページへ遷移
+　　　　　　　　　　　view->>view:　セル部分が押されたら、タスク編集ページへ遷移
+```
+## タスク追加ページ
+```mermaid
+sequenceDiagram;
+     view->>view model: タスクが追加されたことを伝達
+     view model->>repository: 追加したデータを更新するようrepositoryに依頼
+     repository->>SharedPreference: 追加したデータを更新
+     repository-->>view model:　更新結果を返す
+     view model-->>view: タイトルかつ日付が入力済みの場合、リスト一覧の未完了欄に表示
+```
+## タスク編集ページ
+```mermaid
+sequenceDiagram;
+     view->>view model: タスクが編集されたことを伝達
+     view model->>repository: 編集したデータを更新するようrepositoryに依頼
+     repository->>SharedPreference: 編集したデータを更新
+     repository-->>view model:　更新結果を返す
+     view model-->>view: タイトルかつ日付が入力済みの場合、リスト一覧に表示
+```  
 # 使用技術
 - Flutter
 - SharedPreference
